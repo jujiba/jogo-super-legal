@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Island</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+
+    <!-- TELA INICIAL -->
+    <div id="inicio">
+        <h1>🔬 SCIENCE ISLAND</h1>
+        <p>Uma aventura pelo mundo da ciência!</p>
+        <button onclick="iniciar()">JOGAR</button>
+    </div>
+
+    <!-- TELA DO JOGO -->
+    <div id="jogo">
+
+        <div id="hud">
+            🔬 SCIENCE ISLAND
+            <br>
+            Missão: Conhecer a feira
+        </div>
+
+        <div id="mapa">
+
+            <div class="caminho"></div>
+
+            <div class="barraca" id="biologia">
+                🌱
+                <p>Biologia</p>
+            </div>
+
+            <div class="barraca" id="fisica">
+                ⚡
+                <p>Física</p>
+            </div>
+
+            <div class="barraca" id="quimica">
+                🧪
+                <p>Química</p>
+            </div>
+
+            <div class="barraca" id="ambiente">
+                🌎
+                <p>Meio Ambiente</p>
+            </div>
+
+            <div id="professor">👨‍🔬</div>
+
+            <div id="jogador">🙂</div>
+
+        </div>
+
+        <div id="dialogo">
+            <p id="fala"></p>
+            <button onclick="fecharDialogo()">CONTINUAR</button>
+        </div>
+
+        <div id="instrucoes">
+            Use as setas ou WASD para andar.
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
