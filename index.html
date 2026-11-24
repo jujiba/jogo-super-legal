@@ -12,63 +12,77 @@
 <body>
 
     <!-- TELA INICIAL -->
-    <div id="inicio">
-        <h1>🔬 SCIENCE ISLAND</h1>
+    <section id="inicio" class="tela inicial">
+        <div class="decoracao">⚗️ 🧬 🔬</div>
+
+        <h1>🌴 SCIENCE ISLAND</h1>
+
         <p>Uma aventura pelo mundo da ciência!</p>
+
         <button onclick="iniciar()">JOGAR</button>
-    </div>
+
+        <span class="subtitulo">Prepare-se para descobrir, explorar e aprender!</span>
+    </section>
+
+
+    <!-- ESCOLHA DE PERSONAGEM -->
+    <section id="selecao" class="tela" style="display: none;">
+
+        <h1>ESCOLHA SEU PERSONAGEM</h1>
+
+        <p>Quem vai acompanhar você nessa aventura?</p>
+
+        <div class="personagens">
+
+            <div class="personagem" onclick="selecionarPersonagem('Luna', this)">
+                <span class="avatar">👩🏻‍🔬</span>
+                <h3>Luna</h3>
+                <p>Curiosa e inteligente</p>
+            </div>
+
+            <div class="personagem" onclick="selecionarPersonagem('Theo', this)">
+                <span class="avatar">👨🏽‍🔬</span>
+                <h3>Theo</h3>
+                <p>Corajoso e explorador</p>
+            </div>
+
+            <div class="personagem" onclick="selecionarPersonagem('Mia', this)">
+                <span class="avatar">👩🏽‍🔬</span>
+                <h3>Mia</h3>
+                <p>Criativa e observadora</p>
+            </div>
+
+            <div class="personagem" onclick="selecionarPersonagem('Leo', this)">
+                <span class="avatar">👨🏻‍🔬</span>
+                <h3>Leo</h3>
+                <p>Divertido e aventureiro</p>
+            </div>
+
+        </div>
+
+        <button onclick="confirmarPersonagem()">CONTINUAR</button>
+
+    </section>
+
 
     <!-- TELA DO JOGO -->
-    <div id="jogo">
+    <section id="jogo" class="tela" style="display: none;">
 
-        <div id="hud">
-            🔬 SCIENCE ISLAND
-            <br>
-            Missão: Conhecer a feira
+        <h1>🌴 BEM-VINDO À SCIENCE ISLAND!</h1>
+
+        <div id="personagemEscolhido"></div>
+
+        <p id="mensagem">
+            Sua aventura científica está começando!
+        </p>
+
+        <div class="laboratorio">
+            🔬 🧪 🧬 ⚗️
         </div>
 
-        <div id="mapa">
+        <!-- Aqui você pode colocar as próximas fases do seu jogo -->
 
-            <div class="caminho"></div>
-
-            <div class="barraca" id="biologia">
-                🌱
-                <p>Biologia</p>
-            </div>
-
-            <div class="barraca" id="fisica">
-                ⚡
-                <p>Física</p>
-            </div>
-
-            <div class="barraca" id="quimica">
-                🧪
-                <p>Química</p>
-            </div>
-
-            <div class="barraca" id="ambiente">
-                🌎
-                <p>Meio Ambiente</p>
-            </div>
-
-            <div id="professor">👨‍🔬</div>
-
-            <div id="jogador">🙂</div>
-
-        </div>
-
-        <div id="dialogo">
-            <p id="fala"></p>
-            <button onclick="fecharDialogo()">CONTINUAR</button>
-        </div>
-
-        <div id="instrucoes">
-            Use as setas ou WASD para andar.
-        </div>
-
-    </div>
+    </section>
 
 </body>
 </html>
-
-

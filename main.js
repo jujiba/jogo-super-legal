@@ -1,76 +1,56 @@
 
-let x = 48;
-let y = 48;
-let velocidade = 2;
-let etapa = 0;
+let personagemSelecionado = null;
 
-// INICIAR JOGO
+// ABRIR A ESCOLHA DE PERSONAGEM
 
 function iniciar() {
     document.getElementById("inicio").style.display = "none";
-    document.getElementById("jogo").style.display = "block";
 
-    mostrarDialogo(
-        "Olá! Seja bem-vindo à Science Island! " +
-        "Prepare-se para conhecer nossa Feira de Ciências!"
-    );
+    document.getElementById("selecao").style.display = "flex";
 }
 
-// MOSTRAR DIÁLOGO
 
-function mostrarDialogo(texto) {
-    document.getElementById("fala").innerText = texto;
-    document.getElementById("dialogo").style.display = "block";
+// SELECIONAR PERSONAGEM
+
+function selecionarPersonagem(nome, elemento) {
+
+    personagemSelecionado = nome;
+
+    // Retirar seleção dos outros personagens
+    document.querySelectorAll(".personagem").forEach(function(personagem) {
+        personagem.classList.remove("selecionado");
+    });
+
+    // Destacar personagem escolhido
+    elemento.classList.add("selecionado");
 }
 
-// FECHAR E CONTINUAR
 
-function fecharDialogo() {
-    document.getElementById("dialogo").style.display = "none";
+// CONFIRMAR ESCOLHA E COMEÇAR O JOGO
 
-    if (etapa === 0) {
-        mostrarDialogo(
-            "Sua missão é explorar as barracas e descobrir " +
-            "experimentos incríveis de diferentes áreas da ciência!"
-        );
+function confirmarPersonagem() {
+
+    if (personagemSelecionado === null) {
+        alert("Escolha um personagem antes de continuar!");
+        return;
     }
 
-    else if (etapa === 1) {
-        document.getElementById("hud").innerHTML =
-            "🔬 SCIENCE ISLAND<br>Missão: Explore a feira!";
+    document.getElementById("selecao").style.display = "none";
 
-        document.getElementById("dialogo").style.display = "none";
-    }
+    document.getElementById("jogo").style.display = "flex";
 
-    etapa++;
+    let emojis = {
+        "Luna": "👩🏻‍🔬",
+        "Theo": "👨🏽‍🔬",
+        "Mia": "👩🏽‍🔬",
+        "Leo": "👨🏻‍🔬"
+    };
+
+    document.getElementById("personagemEscolhido").innerHTML =
+        emojis[personagemSelecionado];
+
+    document.getElementById("mensagem").innerHTML =
+        "Olá, " + personagemSelecionado +
+        "! Seja bem-vindo à Science Island! " +
+        "Prepare-se para explorar nossa feira de ciências!";
 }
-
-// MOVIMENTAÇÃO
-
-document.addEventListener("keydown", function(event) {
-
-    if (document.getElementById("jogo").style.display === "none") return;
-
-    if (document.getElementById("dialogo").style.display === "block") return;
-
-    let tecla = event.key.toLowerCase();
-
-    if (tecla === "arrowup" || tecla === "w") y -= velocidade;
-    if (tecla === "arrowdown" || tecla === "s") y += velocidade;
-    if (tecla === "arrowleft" || tecla === "a") x -= velocidade;
-    if (tecla === "arrowright" || tecla === "d") x += velocidade;
-
-    // LIMITES DO CENÁRIO
-
-    x = Math.max(0, Math.min(96, x));
-    y = Math.max(0, Math.min(90, y));
-
-    // ATUALIZAR PERSONAGEM
-
-    let jogador = document.getElementById("jogador");
-
-    jogador.style.left = x + "%";
-    jogador.style.top = y + "%";
-
-});
-
