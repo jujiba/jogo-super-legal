@@ -2,87 +2,197 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science Island</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science Island</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
+  <main>
     <!-- TELA INICIAL -->
-    <section id="inicio" class="tela inicial">
-        <div class="decoracao">⚗️ 🧬 🔬</div>
+    <section id="welcome" class="screen welcome-screen active">
+      <div class="welcome-card">
+        <div class="sun-decoration">☀️</div>
+        <p class="eyebrow">UMA AVENTURA PELO CONHECIMENTO</p>
+        <h1>SCIENCE <span>ISLAND</span></h1>
+        <p class="welcome-text">Uma ilha misteriosa, cinco desafios e muito conhecimento esperando por você!</p>
 
-        <h1>🌴 SCIENCE ISLAND</h1>
+        <label for="player-name">Como devemos te chamar?</label>
+        <input id="player-name" type="text" maxlength="16" placeholder="Digite seu nome">
 
-        <p>Uma aventura pelo mundo da ciência!</p>
-
-        <button onclick="iniciar()">JOGAR</button>
-
-        <span class="subtitulo">Prepare-se para descobrir, explorar e aprender!</span>
-    </section>
-
-
-    <!-- ESCOLHA DE PERSONAGEM -->
-    <section id="selecao" class="tela" style="display: none;">
-
-        <h1>ESCOLHA SEU PERSONAGEM</h1>
-
-        <p>Quem vai acompanhar você nessa aventura?</p>
-
-        <div class="personagens">
-
-            <div class="personagem" onclick="selecionarPersonagem('Luna', this)">
-                <span class="avatar">👩🏻‍🔬</span>
-                <h3>Luna</h3>
-                <p>Curiosa e inteligente</p>
-            </div>
-
-            <div class="personagem" onclick="selecionarPersonagem('Theo', this)">
-                <span class="avatar">👨🏽‍🔬</span>
-                <h3>Theo</h3>
-                <p>Corajoso e explorador</p>
-            </div>
-
-            <div class="personagem" onclick="selecionarPersonagem('Mia', this)">
-                <span class="avatar">👩🏽‍🔬</span>
-                <h3>Mia</h3>
-                <p>Criativa e observadora</p>
-            </div>
-
-            <div class="personagem" onclick="selecionarPersonagem('Leo', this)">
-                <span class="avatar">👨🏻‍🔬</span>
-                <h3>Leo</h3>
-                <p>Divertido e aventureiro</p>
-            </div>
-
+        <p class="choose-title">Escolha seu aventureiro:</p>
+        <div class="avatar-options">
+          <button class="avatar-choice selected" data-avatar="🧑🏻‍🔬" aria-label="Aventureiro 1">🧑🏻‍🔬</button>
+          <button class="avatar-choice" data-avatar="👩🏽‍🔬" aria-label="Aventureira 2">👩🏽‍🔬</button>
+          <button class="avatar-choice" data-avatar="🧑🏿‍🚀" aria-label="Aventureiro 3">🧑🏿‍🚀</button>
+          <button class="avatar-choice" data-avatar="👩🏼‍🚀" aria-label="Aventureira 4">👩🏼‍🚀</button>
         </div>
 
-        <button onclick="confirmarPersonagem()">CONTINUAR</button>
-
+        <button id="start-button" class="main-button">COMEÇAR A AVENTURA ✨</button>
+      </div>
+      <div class="welcome-palm palm-left">🌴</div>
+      <div class="welcome-palm palm-right">🌴</div>
     </section>
 
-
-    <!-- TELA DO JOGO -->
-    <section id="jogo" class="tela" style="display: none;">
-
-        <h1>🌴 BEM-VINDO À SCIENCE ISLAND!</h1>
-
-        <div id="personagemEscolhido"></div>
-
-        <p id="mensagem">
-            Sua aventura científica está começando!
-        </p>
-
-        <div class="laboratorio">
-            🔬 🧪 🧬 ⚗️
+    <!-- MAPA DA ILHA -->
+    <section id="game" class="screen game-screen">
+      <header class="game-header">
+        <div>
+          <p class="eyebrow">BEM-VINDO À ILHA</p>
+          <h2>Olá, <span id="greeting">aventureiro</span>!</h2>
         </div>
+        <div class="stats">
+          <div class="stat">❤️ <span id="lives">5</span></div>
+          <div class="stat">🏆 <span id="trophies">0</span></div>
+        </div>
+      </header>
 
-        <!-- Aqui você pode colocar as próximas fases do seu jogo -->
+      <div class="phase-banner">
+        <span id="phase-label">FASE 1 DE 5 — QUÍMICA</span>
+        <span id="phase-progress">0/5 fases concluídas</span>
+      </div>
 
+      <div id="island" class="island">
+        <div class="island-sun">☀️</div>
+        <div class="island-cloud cloud-one">☁️</div>
+        <div class="island-cloud cloud-two">☁️</div>
+        <div class="ocean-wave wave-one"></div>
+        <div class="ocean-wave wave-two"></div>
+
+        <div class="map-decoration tree tree-one">🌴</div>
+        <div class="map-decoration tree tree-two">🌴</div>
+        <div class="map-decoration tree tree-three">🌴</div>
+        <div class="map-decoration tree tree-four">🌴</div>
+        <div class="map-decoration flower flower-one">🌺</div>
+        <div class="map-decoration flower flower-two">🌼</div>
+        <div class="map-decoration flower flower-three">🌸</div>
+        <div class="map-decoration rock rock-one">🪨</div>
+        <div class="map-decoration rock rock-two">🪨</div>
+
+        <button class="station chemistry" data-station="chemistry" style="--x:22%;--y:30%">
+          <span class="station-tent">⚗️</span>
+          <span class="station-name">QUÍMICA</span>
+          <span class="station-status">DISPONÍVEL</span>
+        </button>
+
+        <button class="station physics" data-station="physics" style="--x:76%;--y:28%">
+          <span class="station-tent">🧲</span>
+          <span class="station-name">FÍSICA</span>
+          <span class="station-status">BLOQUEADA</span>
+        </button>
+
+        <button class="station biology" data-station="biology" style="--x:27%;--y:70%">
+          <span class="station-tent">🧬</span>
+          <span class="station-name">BIOLOGIA</span>
+          <span class="station-status">BLOQUEADA</span>
+        </button>
+
+        <button class="station astronomy" data-station="astronomy" style="--x:75%;--y:70%">
+          <span class="station-tent">🔭</span>
+          <span class="station-name">ASTRONOMIA</span>
+          <span class="station-status">BLOQUEADA</span>
+        </button>
+
+        <button class="station math" data-station="math" style="--x:51%;--y:48%">
+          <span class="station-tent">📐</span>
+          <span class="station-name">MATEMÁTICA</span>
+          <span class="station-status">BLOQUEADA</span>
+        </button>
+
+        <div id="player" class="player" style="left:50%;top:87%">
+          <span id="player-sprite">🧑🏻‍🔬</span>
+          <span class="player-shadow"></span>
+        </div>
+      </div>
+
+      <div class="map-footer">
+        <p id="nearby">Explore a ilha e encontre a primeira barraca!</p>
+        <p class="desktop-hint">Use as setas ou WASD para andar. Pressione E para entrar.</p>
+        <div class="mobile-controls">
+          <button data-move="up" aria-label="Mover para cima">▲</button>
+          <div>
+            <button data-move="left" aria-label="Mover para esquerda">◀</button>
+            <button data-move="down" aria-label="Mover para baixo">▼</button>
+            <button data-move="right" aria-label="Mover para direita">▶</button>
+          </div>
+        </div>
+        <button id="enter-button" class="main-button enter-button" disabled>ENTRAR NA BARRACA</button>
+      </div>
     </section>
 
+    <!-- INTERIOR DA BARRACA -->
+    <section id="interior" class="screen interior-screen">
+      <button id="back-map" class="back-button">← VOLTAR AO MAPA</button>
+      <div id="room" class="room chemistry-room">
+        <div class="room-stars">✦　✧　✦</div>
+        <div class="room-content">
+          <div id="room-icon" class="room-icon">⚗️</div>
+          <p class="eyebrow">ESTAÇÃO DE PESQUISA</p>
+          <h2 id="room-title">Laboratório de Química</h2>
+          <p id="room-description">Prepare-se para explorar o mundo das substâncias e das transformações!</p>
+          <div id="room-decoration" class="room-decoration">🧪　🧫　⚗️</div>
+          <div id="room-equipment" class="room-equipment">🔬　📚　🧴</div>
+          <div class="room-card">
+            <h3>DESAFIO DA ESTAÇÃO</h3>
+            <p id="room-challenge">Responda às dez perguntas para conquistar seu troféu!</p>
+            <button id="room-start" class="main-button">COMEÇAR DESAFIO</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="screen quiz-screen">
+      <header class="quiz-header">
+        <button id="quit-quiz" class="back-button">← SAIR</button>
+        <div class="quiz-stats">
+          <span>❤️ <b id="quiz-lives">5</b></span>
+          <span>🏆 <b id="quiz-trophies">0</b></span>
+        </div>
+      </header>
+
+      <div class="quiz-card">
+        <div class="quiz-top">
+          <span id="quiz-icon">⚗️</span>
+          <div>
+            <p class="eyebrow" id="quiz-phase">FASE 1</p>
+            <h2 id="quiz-title">Química</h2>
+          </div>
+        </div>
+        <div class="progress-info">
+          <span id="question-number">PERGUNTA 1 DE 10</span>
+          <span id="progress-percent">10%</span>
+        </div>
+        <div class="progress-track"><div id="progress" class="progress-fill"></div></div>
+        <h3 id="question">Carregando pergunta...</h3>
+        <div id="answers" class="answers"></div>
+        <p id="feedback" class="feedback" aria-live="polite"></p>
+        <button id="next-button" class="main-button" disabled>PRÓXIMA PERGUNTA</button>
+      </div>
+    </section>
+
+    <!-- RESULTADO FINAL -->
+    <section id="result" class="screen result-screen">
+      <div class="result-card">
+        <div id="result-icon" class="result-icon">🏝️</div>
+        <p class="eyebrow">FIM DA AVENTURA</p>
+        <h1 id="result-title">Parabéns!</h1>
+        <p id="result-message">Você completou sua jornada pela Science Island!</p>
+        <div class="result-stats">
+          <div>🏆 <strong id="final-trophies">0</strong><span>Troféus</span></div>
+          <div>❤️ <strong id="final-lives">0</strong><span>Vidas restantes</span></div>
+          <div>🌴 <strong id="final-stations">0/5</strong><span>Fases concluídas</span></div>
+        </div>
+        <p class="credits">DESENVOLVIMENTO<br><strong>Giovanna Nascimento</strong><br><strong>Andriele Cristina</strong></p>
+        <p class="credits-small">Fontes: Google Fonts — Fredoka e Nunito<br>Projeto educativo Science Island</p>
+        <button id="restart-button" class="main-button">JOGAR NOVAMENTE</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
 </body>
 </html>
